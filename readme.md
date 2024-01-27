@@ -6,7 +6,21 @@ Python 3.6.3
 # Instalar librerías
 python3.6 -m pip -r install requirements.txt
 
+# GIT 
+git pull origin
+
 # Iniciar el proyecto
+
+Cambiar los parámetros de base de datos para que funciones desde el servidor
+
+python3.6 -m pip install gunicorn
+
+gunicorn -w 4 -b 0.0.0.0:5000 app:app
+
+
+# Modo Developer
+
+Instalar Python 3.6.3
 
 # Ingresar a la carpeta virtual
 source .venv/bin/activate
