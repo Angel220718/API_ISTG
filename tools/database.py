@@ -1,6 +1,7 @@
 import pymysql
 import logging
 from flask import jsonify
+from tools import config
 
 logging.basicConfig(level=logging.DEBUG,  # Puedes ajustar el nivel según tus necesidades (DEBUG, INFO, WARNING, ERROR, CRITICAL)
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -8,19 +9,22 @@ logging.basicConfig(level=logging.DEBUG,  # Puedes ajustar el nivel según tus n
 
 def connect_db():
 
+    conf = config.get_config()
+    logging.debug('Database config: ' + str(conf))
+
     try:
         conn = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='root',
-            db='db_consultas'
+            host=conf['host'],
+            user=conf['user'],
+            password=conf['pass'],
+            db=conf['db']
         )
 
         return conn
 
-    except pymysql.connect.Error as error:
+    except pymysql.connect.Error as e:
         conn.close()
-        logging.debug(f"Error: {error}")
+        logging.debug(f"Error: {e}")
         return None
 
 
@@ -42,8 +46,8 @@ def load_user(cedula, campus):
 
         return jsonify(res)
 
-    except pymysql.connect.Error as error:
-        logging.error(f"Error: {error}")
+    except pymysql.connect.Error as e:
+        logging.error(f"Error: {e}")
 
 
 def load_assistence(cedula, dateIni, dateEnd):
@@ -64,5 +68,5 @@ def load_assistence(cedula, dateIni, dateEnd):
 
         return jsonify(res)
 
-    except pymysql.connect.Error as error:
-        logging.error(f"Error: {error}")
+    except pymysql.connect.Error as e:
+        logging.error(f"Error: {e}")

@@ -30,7 +30,7 @@ def get_asistence():  # put application's code here
 
 
 @app.route('/', methods=['GET'])
-def index():  # put application's code here
+def index():
     return "API activa"
 
 
