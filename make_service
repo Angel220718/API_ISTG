@@ -1,0 +1,16 @@
+[Unit]
+Description=API para proceso de asistencias
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/asistencias/api/API_ISTG
+ExecStart=/home/asistencias/api/API_ISTG/start.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
