@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Cambia a la ubicación de tu aplicación
+# Ruta del proyecto
 cd /home/asistencias/api/API_ISTG
 
 # Inicia Gunicorn
